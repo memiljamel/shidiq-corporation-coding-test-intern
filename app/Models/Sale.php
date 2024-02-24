@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Sale extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Product extends Model
      *
      * @var string
      */
-    protected $table = 'products';
+    protected $table = 'sales';
 
     /**
      * The primary key associated with the table.
@@ -50,17 +50,17 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'product_name',
-        'product_description',
-        'product_price_capital',
-        'product_price_sell',
+        'product_id',
+        'quantity',
+        'discount',
+        'total_price',
     ];
 
     /**
-     * Get the sales for the product.
+     * Get the product that owns the sales.
      */
-    public function sales()
+    public function product()
     {
-        return $this->hasMany(Sale::class, 'product_id', 'id');
+        return $this->belongsTo(Product::class, 'product_id', 'id');
     }
 }

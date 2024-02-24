@@ -51,6 +51,15 @@
                   </li>
               @endif
 
+              @if (check_authorized("003U|004R"))
+                  <li class="sidebar-item {{ request()->segment(2) == 'sales' ? 'active' : '' }}">
+                      <a href="{{ route('app.sales.index') }}" class='sidebar-link'>
+                          <i class="bi bi-clipboard-data-fill"></i>
+                          <span>Sales</span>
+                      </a>
+                  </li>
+              @endif
+
               @if (check_authorized("005S"))
                 <li
                     class="sidebar-item {{ request()->segment(2) == 'settings' ? 'active' : '' }}">
